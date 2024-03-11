@@ -1,23 +1,45 @@
-def sumar(n1, n2):
-    return n1+n2
+class calculator:
+    def __init__(self):
+        self._ans = None
+        self._num1 = None
+        self._num2 = None
+    
+    @property
+    def ans(self):
+        return self._ans
 
-def restar(n1, n2):
-    return n1-n2
+    @ans.setter
+    def ans(self, new_ans):
+        self._ans = new_ans
 
-def multiplicar(n1, n2):
-    return n1*n2
+    @property
+    def num1(self):
+        return self.num1
 
-def dividir(n1, n2):
-    if n2!=0:
-        return n1/n2
-    else:
-        print("no se puede dividir por cero!")
-        return(None)
+    @num1.setter
+    def ans(self, new_num1):
+        self._num1 = new_num1
 
-num1 = int(input("pone un numerito: "))
-num2 = int(input("pone otro numerito: "))
+    @property
+    def num2(self):
+        return self._num2
 
-resultado = dividir(num1,num2)
+    @num2.setter
+    def ans(self, new_num2):
+        self._num2 = new_num2
 
-if resultado is not None:
-    print(resultado)
+    def sumar(self, n1, n2):
+        return n1+n2
+
+    def subtract(self, n1, n2):
+        return n1-n2
+
+    def multiply(self, n1, n2):
+        return n1*n2
+
+    def divide(self, n1, n2):
+        if n2!=0:
+            return n1/n2
+        else:
+            print("no se puede dividir por cero!")
+            return(None)
