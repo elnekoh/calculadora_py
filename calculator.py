@@ -1,8 +1,6 @@
-class calculator:
+class Calculator:
     def __init__(self):
         self._ans = None
-        self._num1 = None
-        self._num2 = None
     
     @property
     def ans(self):
@@ -11,22 +9,6 @@ class calculator:
     @ans.setter
     def ans(self, new_ans):
         self._ans = new_ans
-
-    @property
-    def num1(self):
-        return self.num1
-
-    @num1.setter
-    def ans(self, new_num1):
-        self._num1 = new_num1
-
-    @property
-    def num2(self):
-        return self._num2
-
-    @num2.setter
-    def ans(self, new_num2):
-        self._num2 = new_num2
 
     def _sum(self, n1, n2):
         return n1+n2
@@ -59,13 +41,14 @@ class calculator:
     def split_expression(self, str):
         #hardcode, quitar URGENTE, operations deberia ser una variable de clase
         operations = ["+","-","*","/"]
+
+        i = 0
         position = -1
-        for operation in operations:
-            position = str.find(operation)
-        
+
+        while position == -1 and i< len(operations):
+                position = str.find(operations[i])
+                i+=1
         if position != -1:
-            str_num1 = str[:position]
-            str_num2 = str[position+1:]
             op = str[position]
 
             #podria pasar que llegue "5+3-1". en ese caso, num2 daria error, y esta bien, porque solo quiero resolver
@@ -85,5 +68,11 @@ class calculator:
             
             return [num1, num2, op]
         else:
-            raise ValueError("No se pudo identificar la expresion matematica, o simplemente no llego una expresion matematica. /n", "str: ",str)
-            
+            raise ValueError("No se pudo identificar la expresion matematica, o simplemente no llego una expresion matematica. \n" + "str: ",str)      
+        
+
+
+c = Calculator()
+expresion = input("ingrese la expresion: ")
+expresion_split = c.split_expression(expresion)
+print(c.solve(expresion_split[0], expresion_split[1], expresion_split[2]))
