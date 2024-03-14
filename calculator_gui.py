@@ -9,8 +9,13 @@ class Calculator_gui(Calculator):
     BTN_HEIGHT = 2
     BTN_BORDERWIDTH = 5
     BTN_RELIEF = "raiseself"
+    BTN_PADX = 5
+    BTN_PADY= 5
 
     #display
+    DISPLAY_WIDTH = 16
+    DISPLAY_PADX = 5
+    DISPLAY_PADY = 5
     DISPLAY_FONT = "Calibri 20"
 
     def __init__(self):
@@ -19,7 +24,7 @@ class Calculator_gui(Calculator):
         self._window.title("Calculator")
 
         #display
-        self._display = Label(self.window, font=(self.DISPLAY_FONT), text="hola", anchor="e", justify="right", width="16")
+        self._display = Label(self.window, font=(self.DISPLAY_FONT), text="hola", anchor="e", justify="right", width=self.DISPLAY_WIDTH)
 
         #buttons
         self._btn1 = Button(self._window, text= "1", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
@@ -47,36 +52,36 @@ class Calculator_gui(Calculator):
         self._window.mainloop()
 
     def display_grid(self):
-        self._display.grid(row = 0, column = 0, columnspan = 4, padx = 5, pady = 5, sticky="e")
+        self._display.grid(row = 0, column = 0, columnspan = 4, padx = self.DISPLAY_PADX, pady = self.DISPLAY_PADY, sticky="e")
 
     def btns_grid(self):
         #row
-        self._btn_delAll.grid(row = 2, column = 0, padx = 5, pady = 5)
-        self._btn_del.grid(row = 2, column = 1, columnspan = 2, padx = 5, pady = 5)
-        self._btn_equal.grid(row = 2, column = 3, padx = 5, pady = 5)
+        self._btn_delAll.grid(row = 2, column = 0, padx = self.BTN_PADX, pady = self.BTN_PADY)
+        self._btn_del.grid(row = 2, column = 1, columnspan = 2, padx = self.BTN_PADX, pady = self.BTN_PADY)
+        self._btn_equal.grid(row = 2, column = 3, padx = self.BTN_PADX, pady = self.BTN_PADY)
 
         #row2
-        self._btn7.grid(row = 3, column = 0, padx = 5, pady = 5)
-        self._btn8.grid(row = 3, column = 1, padx = 5, pady = 5)
-        self._btn9.grid(row = 3, column = 2, padx = 5, pady = 5)
-        self._btn_sum.grid(row = 3, column = 3, padx = 5, pady = 5)
+        self._btn7.grid(row = 3, column = 0, padx = self.BTN_PADX, pady = self.BTN_PADY)
+        self._btn8.grid(row = 3, column = 1, padx = self.BTN_PADX, pady = self.BTN_PADY)
+        self._btn9.grid(row = 3, column = 2, padx = self.BTN_PADX, pady = self.BTN_PADY)
+        self._btn_sum.grid(row = 3, column = 3, padx = self.BTN_PADX, pady = self.BTN_PADY)
 
         #row3
-        self._btn4.grid(row = 4, column = 0, padx = 5, pady = 5)
-        self._btn5.grid(row = 4, column = 1, padx = 5, pady = 5)
-        self._btn6.grid(row = 4, column = 2, padx = 5, pady = 5)
-        self._btn_sub.grid(row = 4, column = 3, padx = 5, pady = 5)
+        self._btn4.grid(row = 4, column = 0, padx = self.BTN_PADX, pady = self.BTN_PADY)
+        self._btn5.grid(row = 4, column = 1, padx = self.BTN_PADX, pady = self.BTN_PADY)
+        self._btn6.grid(row = 4, column = 2, padx = self.BTN_PADX, pady = self.BTN_PADY)
+        self._btn_sub.grid(row = 4, column = 3, padx = self.BTN_PADX, pady = self.BTN_PADY)
 
         #row4
-        self._btn1.grid(row = 5, column = 0, padx = 5, pady = 5)
-        self._btn2.grid(row = 5, column = 1, padx = 5, pady = 5)
-        self._btn3.grid(row = 5, column = 2, padx = 5, pady = 5)
-        self._btn_div.grid(row = 5, column = 3, padx = 5, pady = 5)
+        self._btn1.grid(row = 5, column = 0, padx = self.BTN_PADX, pady = self.BTN_PADY)
+        self._btn2.grid(row = 5, column = 1, padx = self.BTN_PADX, pady = self.BTN_PADY)
+        self._btn3.grid(row = 5, column = 2, padx = self.BTN_PADX, pady = self.BTN_PADY)
+        self._btn_div.grid(row = 5, column = 3, padx = self.BTN_PADX, pady = self.BTN_PADY)
 
         #row5
-        self._btn_dot.grid(row = 6, column = 0, padx = 5, pady = 5)
-        self._btn0.grid(row = 6, column = 1, padx = 5, pady = 5)
-        self._btn_mult.grid(row = 6, column = 3, padx = 5, pady = 5)
+        self._btn_dot.grid(row = 6, column = 0, padx = self.BTN_PADX, pady = self.BTN_PADY)
+        self._btn0.grid(row = 6, column = 1, padx = self.BTN_PADX, pady = self.BTN_PADY)
+        self._btn_mult.grid(row = 6, column = 3, padx = self.BTN_PADX, pady = self.BTN_PADY)
 
     @property
     def window(self):
