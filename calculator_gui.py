@@ -8,7 +8,7 @@ class Calculator_gui(Calculator):
     BTN_WIDTH = 5
     BTN_HEIGHT = 2
     BTN_BORDERWIDTH = 5
-    BTN_RELIEF = "raiseself"
+    BTN_RELIEF = "raise"
     BTN_PADX = 5
     BTN_PADY= 5
 
@@ -27,25 +27,25 @@ class Calculator_gui(Calculator):
         self._display = Label(self.window, font=(self.DISPLAY_FONT), text="hola", anchor="e", justify="right", width=self.DISPLAY_WIDTH)
 
         #buttons
-        self._btn1 = Button(self._window, text= "1", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
-        self._btn2 = Button(self._window, text= "2", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
-        self._btn3 = Button(self._window, text= "3", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
-        self._btn4 = Button(self._window, text= "4", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
-        self._btn5 = Button(self._window, text= "5", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
-        self._btn6 = Button(self._window, text= "6", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
-        self._btn7 = Button(self._window, text= "7", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
-        self._btn8 = Button(self._window, text= "8", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
-        self._btn9 = Button(self._window, text= "9", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
-        self._btn0 = Button(self._window, text= "0", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
+        self._btn1 = Button(self._window, text= "1", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("1"))
+        self._btn2 = Button(self._window, text= "2", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("2"))
+        self._btn3 = Button(self._window, text= "3", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("3"))
+        self._btn4 = Button(self._window, text= "4", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("4"))
+        self._btn5 = Button(self._window, text= "5", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("5"))
+        self._btn6 = Button(self._window, text= "6", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("6"))
+        self._btn7 = Button(self._window, text= "7", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("7"))
+        self._btn8 = Button(self._window, text= "8", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("8"))
+        self._btn9 = Button(self._window, text= "9", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("9"))
+        self._btn0 = Button(self._window, text= "0", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("0"))
 
-        self._btn_del = Button(self._window, text= "DEL", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
-        self._btn_delAll = Button(self._window, text= "AC", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
-        self._btn_dot = Button(self._window, text= ".", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
-        self._btn_equal = Button(self._window, text= "=", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
-        self._btn_sum = Button(self._window, text= "+", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
-        self._btn_sub = Button(self._window, text= "-", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
-        self._btn_div = Button(self._window, text= "/", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
-        self._btn_mult = Button(self._window, text= "*", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
+        self._btn_del = Button(self._window, text= "DEL", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("DEL"))
+        self._btn_delAll = Button(self._window, text= "AC", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("AC"))
+        self._btn_dot = Button(self._window, text= ".", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("."))
+        self._btn_equal = Button(self._window, text= "=", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("="))
+        self._btn_sum = Button(self._window, text= "+", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("+"))
+        self._btn_sub = Button(self._window, text= "-", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("-"))
+        self._btn_div = Button(self._window, text= "/", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("/"))
+        self._btn_mult = Button(self._window, text= "*", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("*"))
 
         self.btns_grid()
         self.display_grid()
@@ -90,6 +90,10 @@ class Calculator_gui(Calculator):
     @property
     def display(self):
         return self._display
+    
+    def btn_click(self, btn):
+        txt = self.display.cget("text")
+        self.display.config(text=txt+btn)
     
 
 c = Calculator_gui()
