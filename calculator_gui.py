@@ -2,6 +2,16 @@ from calculator import Calculator
 from tkinter import *
 
 class Calculator_gui(Calculator):
+    
+    #constantes
+    #btns
+    BTN_WIDTH = 5
+    BTN_HEIGHT = 2
+    BTN_BORDERWIDTH = 5
+    BTN_RELIEF = "raiseself"
+
+    #display
+    DISPLAY_FONT = "Calibri 20"
 
     def __init__(self):
         Calculator.__init__(self)
@@ -9,28 +19,28 @@ class Calculator_gui(Calculator):
         self._window.title("Calculator")
 
         #display
-        self._display = Label(self.window, font=("Calibri 20"), text="hola", anchor="e", justify="right", width="16")
+        self._display = Label(self.window, font=(self.DISPLAY_FONT), text="hola", anchor="e", justify="right", width="16")
 
         #buttons
-        self._btn1 = Button(self._window, text= "1", width = 5, height = 2, borderwidth=5, relief="raised")
-        self._btn2 = Button(self._window, text= "2", width = 5, height = 2, borderwidth=5, relief="raised")
-        self._btn3 = Button(self._window, text= "3", width = 5, height = 2, borderwidth=5, relief="raised")
-        self._btn4 = Button(self._window, text= "4", width = 5, height = 2, borderwidth=5, relief="raised")
-        self._btn5 = Button(self._window, text= "5", width = 5, height = 2, borderwidth=5, relief="raised")
-        self._btn6 = Button(self._window, text= "6", width = 5, height = 2, borderwidth=5, relief="raised")
-        self._btn7 = Button(self._window, text= "7", width = 5, height = 2, borderwidth=5, relief="raised")
-        self._btn8 = Button(self._window, text= "8", width = 5, height = 2, borderwidth=5, relief="raised")
-        self._btn9 = Button(self._window, text= "9", width = 5, height = 2, borderwidth=5, relief="raised")
-        self._btn0 = Button(self._window, text= "0", width = 5, height = 2, borderwidth=5, relief="raised")
+        self._btn1 = Button(self._window, text= "1", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
+        self._btn2 = Button(self._window, text= "2", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
+        self._btn3 = Button(self._window, text= "3", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
+        self._btn4 = Button(self._window, text= "4", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
+        self._btn5 = Button(self._window, text= "5", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
+        self._btn6 = Button(self._window, text= "6", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
+        self._btn7 = Button(self._window, text= "7", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
+        self._btn8 = Button(self._window, text= "8", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
+        self._btn9 = Button(self._window, text= "9", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
+        self._btn0 = Button(self._window, text= "0", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
 
-        self._btn_del = Button(self._window, text= "DEL", width = 5, height = 2, borderwidth=5, relief="raised")
-        self._btn_delAll = Button(self._window, text= "AC", width = 5, height = 2, borderwidth=5, relief="raised")
-        self._btn_dot = Button(self._window, text= ".", width = 5, height = 2, borderwidth=5, relief="raised")
-        self._btn_equal = Button(self._window, text= "=", width = 5, height = 2, borderwidth=5, relief="raised")
-        self._btn_sum = Button(self._window, text= "+", width = 5, height = 2, borderwidth=5, relief="raised")
-        self._btn_sub = Button(self._window, text= "-", width = 5, height = 2, borderwidth=5, relief="raised")
-        self._btn_div = Button(self._window, text= "/", width = 5, height = 2, borderwidth=5, relief="raised")
-        self._btn_mult = Button(self._window, text= "*", width = 5, height = 2, borderwidth=5, relief="raised")
+        self._btn_del = Button(self._window, text= "DEL", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
+        self._btn_delAll = Button(self._window, text= "AC", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
+        self._btn_dot = Button(self._window, text= ".", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
+        self._btn_equal = Button(self._window, text= "=", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
+        self._btn_sum = Button(self._window, text= "+", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
+        self._btn_sub = Button(self._window, text= "-", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
+        self._btn_div = Button(self._window, text= "/", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
+        self._btn_mult = Button(self._window, text= "*", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF)
 
         self.btns_grid()
         self.display_grid()
