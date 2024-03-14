@@ -81,4 +81,3 @@ class Calculator:
             return [num1, num2, op]
         else:
             raise ValueError("No se pudo identificar la expresion matematica, o simplemente no llego una expresion matematica. \n" + "str: ",str)      
-        

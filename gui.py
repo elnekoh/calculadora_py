@@ -3,8 +3,6 @@ from tkinter import *
 window = Tk()
 window.title("Calculator")
 
-    
-
 #display
 display = Label(window, font=("Calibri 20"), text="", anchor="e", justify="right", width="16")
 display.grid(row = 0, column = 0, columnspan = 4, padx = 5, pady = 5, sticky="e")
@@ -58,6 +56,5 @@ btn_div.grid(row = 5, column = 3, padx = 5, pady = 5)
 btn_dot.grid(row = 6, column = 0, padx = 5, pady = 5)
 btn0.grid(row = 6, column = 1, padx = 5, pady = 5)
 btn_mult.grid(row = 6, column = 3, padx = 5, pady = 5)
-
 
 window.mainloop()
