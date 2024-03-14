@@ -10,7 +10,7 @@ display = Label(window, font=("Calibri 20"), text="", anchor="e", justify="right
 display.grid(row = 0, column = 0, columnspan = 4, padx = 5, pady = 5, sticky="e")
 
 #buttons btn = Button(window, text= "", width = 5, height = 2)
-btn1 = Button(window, text= "1", width = 5, height = 2, borderwidth=5, relief="raised", command=click)
+btn1 = Button(window, text= "1", width = 5, height = 2, borderwidth=5, relief="raised")
 btn2 = Button(window, text= "2", width = 5, height = 2, borderwidth=5, relief="raised")
 btn3 = Button(window, text= "3", width = 5, height = 2, borderwidth=5, relief="raised")
 btn4 = Button(window, text= "4", width = 5, height = 2, borderwidth=5, relief="raised")
