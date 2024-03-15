@@ -1,4 +1,6 @@
 class Calculator:
+    M_ERROR = "Error"
+
     def __init__(self):
         self._ans = None
         self._operations = ["+","-","*","/"]
@@ -38,16 +40,25 @@ class Calculator:
         
     def solve(self, n1, n2, op):
         #este metodo se encarga de resolver la expresion, recibe 2 numeros y un string que determina el tipo de operacion
+        r = 0
         if op == "+":
-            return self._sum(n1, n2)
+            r = self._sum(n1, n2)
         elif op == "-":
-            return self._subtract(n1, n2)
+            r = self._subtract(n1, n2)
         elif op == "*":
-            return self._multiply(n1, n2)
+            r = self._multiply(n1, n2)
         elif op == "/":
-            return self._divide(n1, n2)
+            r = self._divide(n1, n2)
+            if r is None:
+                return self.M_ERROR
         else:
-            raise ValueError("Error: a la funcion solve llego un valor no soportado en el parametro 'op'.\n"+op)
+            #raise ValueError("Error: a la funcion solve llego un valor no soportado en el parametro 'op'.\n"+op)
+            return self.M_ERROR
+        
+        if (r - int(r))*10 == 0:
+            return int(r)
+        else:
+            return r
     
     def split_expression(self, str):
         #este metodo se encarga de separar los numeros del signo de operacion en un string que recibe
@@ -67,8 +78,8 @@ class Calculator:
             #operaciones simples
 
             try:
-                num1 = int(str[:position])
-                num2 = int(str[position+1:])
+                num1 = float(str[:position])
+                num2 = float(str[position+1:])
             except ValueError as e:
                 print("Fallo el casteo de num1, num2 en interpret_operation()")
                 if "num1" in locals():

@@ -24,7 +24,7 @@ class Calculator_gui(Calculator):
         self._window.title("Calculator")
 
         #display
-        self._display = Label(self.window, font=(self.DISPLAY_FONT), text="hola", anchor="e", justify="right", width=self.DISPLAY_WIDTH)
+        self._display = Label(self.window, font=(self.DISPLAY_FONT), text="", anchor="e", justify="right", width=self.DISPLAY_WIDTH)
 
         #buttons
         self._btn1 = Button(self._window, text= "1", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("1"))
@@ -93,7 +93,47 @@ class Calculator_gui(Calculator):
     
     def btn_click(self, btn):
         txt = self.display.cget("text")
-        self.display.config(text=txt+btn)
+
+        if txt == self.M_ERROR:
+            txt = ""
+
+        if btn == "=":
+            #esto deberia ser otro metodo!!!
+            split = self.split_expression(txt)
+            txt = str(self.solve(split[0],split[1],split[2]))
+            if txt == self.M_ERROR:
+                self.display.config(text=txt)
+            else:
+                self.display.config(text=txt)
+
+        if btn in ["1","2","3","4","5","6","7","8","9","0"]:
+            self.display.config(text=txt+btn)
+
+        if btn == "DEL":
+            self.display.config(text=txt[:-1])
+
+        if btn == "AC":
+            self.display.config(text="")
+        
+        if btn in ["+","-","*","/"]:
+            if "+" in txt or "-" in txt or "*" in txt or "/" in txt:
+                #SI
+                if "+" in txt[-1] or "-" in txt[-1] or "*" in txt[-1] or "/" in txt[-1]:
+                    #si
+                    self.display.config(text=txt[:-1]+btn)
+                else:
+                    #no
+                    split = self.split_expression(txt)
+                    txt = str(self.solve(split[0],split[1],split[2]))
+                    if txt == self.M_ERROR:
+                        self.display.config(text=txt)
+                    else:
+                        self.display.config(text=txt+btn)
+            #NO
+            elif txt == "":
+                pass
+            else:
+                self.display.config(text=txt+btn)
     
 
 c = Calculator_gui()
