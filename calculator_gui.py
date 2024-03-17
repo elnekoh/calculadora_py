@@ -1,5 +1,6 @@
 from calculator import Calculator
 from tkinter import *
+from icecream import *
 
 class Calculator_gui(Calculator):
     
@@ -100,10 +101,11 @@ class Calculator_gui(Calculator):
         if btn == "=":
             #esto deberia ser otro metodo!!!
             split = self.split_expression(txt)
-            txt = str(self.solve(split[0],split[1],split[2]))
-            if txt == self.M_ERROR:
-                self.display.config(text=txt)
+            ic(split)
+            if split[1] is None or split[2] is None:
+                pass
             else:
+                txt = str(self.solve(split[0],split[1],split[2]))
                 self.display.config(text=txt)
 
         if btn in ["1","2","3","4","5","6","7","8","9","0"]:
@@ -114,8 +116,31 @@ class Calculator_gui(Calculator):
 
         if btn == "AC":
             self.display.config(text="")
+
+        if btn == ".":
+            if txt != "":
+                split = self.split_expression(txt)
+                ic(split)
+                if split[1] is None:
+                    #SI
+                    if "." in txt:
+                        pass
+                    else:
+                        self.display.config(text=txt+btn)
+                else:
+                    #NO
+                    first_number = txt.replace(str(split[0]), "", 1)
+                    if "." in first_number:
+                        pass
+                    else:
+                        self.display.config(text=txt+btn)
+
+
+
         
         if btn in ["+","-","*","/"]:
+            if txt != "" and "." in txt[-1]:
+                txt = txt[:-1]
             if "+" in txt or "-" in txt or "*" in txt or "/" in txt:
                 #SI
                 if "+" in txt[-1] or "-" in txt[-1] or "*" in txt[-1] or "/" in txt[-1]:
