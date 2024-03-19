@@ -68,63 +68,11 @@ class Calculator:
     def has_no_decimal(self, number):
         return abs(number - int(number)) < 0.000001
 
-    '''
-    def split_expression(self, str):
-
-    
-
-        #este metodo se encarga de separar los numeros del signo de operacion en un string que recibe
-        #y devuelve una lista con los numeros y el signo
-        #solo quiero que entren 2 numeros y un signo, si la expresion tiene mas de 2 terminos en la operacion, quiero que salga error
-        i = 0
-        position = -1
-        ops = self.operations
-
-        if str == "":
-            return [None, None, None]
-
-        while position == -1 and i< len(ops):
-                position = str.find(ops[i])
-                i+=1
-
-        if position != -1:
-            op = str[position]
-
-            #podria pasar que llegue "5+3-1". en ese caso, num2 daria error, y esta bien, porque solo quiero resolver
-            #operaciones simples
-            if not str[position+1:] == "":
-                try:
-                    num1 = float(str[:position])
-                    num2 = float(str[position+1:])
-                except ValueError as e:
-                    print("Fallo el casteo de num1, num2 en split_expression()")
-                    if "num1" in locals():
-                        print("El casteo que fallo fue el de num2")
-                    else:
-                        print("El casteo que fallo fue el de num1")
-                    print("ValueError: ", e)
-                    return None
-                
-                return [num1, num2, op]
-            else:
-                #CODIGO REPETIDO ALERT!!!
-                try:
-                    return [float(str),None,None]
-                except:
-                    print("no se pudo castear a float str en la funcion split_expression()")
-        else:
-            #raise ValueError("No se pudo identificar la expresion matematica, o simplemente no llego una expresion matematica. \n" + "str: ",str)      
-            try:
-                return [float(str),None,None]
-            except:
-                print("no se pudo castear a float str en la funcion split_expression()")
-    '''
     def split_expression(self, str, ops = 0):
         if ops == 0:
             ops = self.operations
         i = 0
         position = -1
-        neg_num = False
 
         while position == -1 and i< len(ops):
                 position = str.find(ops[i])
@@ -132,11 +80,7 @@ class Calculator:
 
         if position != -1:
             op = str[position]
-            #si
-
-            #if position == 0 and str[position] == "-":
-            #    neg_num = True
-            
+                    
             if str[:position] == "":
                 if str[position+1:] == "":
                     print("Llego solo un operador a split_expression()")

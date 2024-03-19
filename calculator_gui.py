@@ -170,29 +170,5 @@ class Calculator_gui(Calculator):
                 else:
                     txt = txt + btn
                     self.display.config(text=txt)
-        
-        '''
-        if btn in ["+","-","*","/"]:
-            if txt != "" and "." in txt[-1]:
-                txt = txt[:-1]
-            if "+" in txt or "-" in txt or "*" in txt or "/" in txt:
-                #SI
-                if "+" in txt[-1] or "-" in txt[-1] or "*" in txt[-1] or "/" in txt[-1]:
-                    #si
-                    self.display.config(text=txt[:-1]+btn)
-                else:
-                    #no
-                    split = self.split_expression(txt)
-                    txt = str(self.solve(split[0],split[1],split[2]))
-                    if txt == self.M_ERROR:
-                        self.display.config(text=txt)
-                    else:
-                        self.display.config(text=txt+btn)
-            #NO
-            elif txt == "":
-                pass
-            else:
-                self.display.config(text=txt+btn)
-        '''
 
 c = Calculator_gui()
