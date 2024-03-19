@@ -122,9 +122,9 @@ class Calculator:
     def split_expression(self, str, ops = 0):
         if ops == 0:
             ops = self.operations
-        ic(ops)
         i = 0
         position = -1
+        neg_num = False
 
         while position == -1 and i< len(ops):
                 position = str.find(ops[i])
@@ -133,26 +133,47 @@ class Calculator:
         if position != -1:
             op = str[position]
             #si
-            try:
-                num1 = float(str[:position])
-            except:
-                print("Error al intentar castear lo que se encontro antes de op a float en 'split_expression()'.")
-                print("( num1 = float(str[:position]) )")
-                return [None, None, None]
-            
-            try:
-                if self.has_no_decimal(num1):
-                    num1 = int(num1)
-                num2 = float(str[position+1:])
-            except:
-                print("Error al intentar castear lo que se encontro despues de op a float en 'split_expression()'.")
-                print("( num2 = float(str[position+1:]) )")
-                return [num1, None, None]
-            
-            if self.has_no_decimal(num2):
-                    num2 = int(num2)
 
-            return [num1,num2,op]
+            #if position == 0 and str[position] == "-":
+            #    neg_num = True
+            
+            if str[:position] == "":
+                if str[position+1:] == "":
+                    print("Llego solo un operador a split_expression()")
+                    return [None, None, None]
+                else:
+                    if str[position] == "-":
+                        split = self.split_expression(str[position+1:])
+                        try:
+                            return [float(split[0])*-1, split[1], split[2]]
+                        except:
+                            print("Fallo el casteo a float de split[0] en split_expression()")
+                            print("return [float("-"+split[0]), split[1], split[2]]")
+                            return [None, None, None] 
+                    else:
+                        print("Llego un operador como primer char de txt a split_expression()")
+                        return [None, None, None]
+            else:
+                try:
+                    num1 = float(str[:position])
+                except:
+                    print("Error al intentar castear lo que se encontro antes de op a float en 'split_expression()'.")
+                    print("( num1 = float(str[:position]) )")
+                    return [None, None, None]
+                
+                try:
+                    if self.has_no_decimal(num1):
+                        num1 = int(num1)
+                    num2 = float(str[position+1:])
+                except:
+                    print("Error al intentar castear lo que se encontro despues de op a float en 'split_expression()'.")
+                    print("( num2 = float(str[position+1:]) )")
+                    return [num1, None, op]
+                
+                if self.has_no_decimal(num2):
+                        num2 = int(num2)
+
+                return [num1,num2,op]
         else:
             #no
             if str == "":

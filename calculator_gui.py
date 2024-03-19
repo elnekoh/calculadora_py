@@ -94,7 +94,7 @@ class Calculator_gui(Calculator):
     
     def btn_click(self, btn):
         txt = self.display.cget("text")
-
+        ic(txt)
         if txt == self.M_ERROR:
             txt = ""
 
@@ -118,9 +118,8 @@ class Calculator_gui(Calculator):
             self.display.config(text="")
 
         if btn == ".":
-            if txt != "":
+            if txt != "" and txt[0] != "-":
                 split = self.split_expression(txt)
-                ic(split)
                 if split[1] is None:
                     #SI
                     if "." in txt:
@@ -137,7 +136,42 @@ class Calculator_gui(Calculator):
 
 
 
+        if btn in ["+","*","/"]:
+            if txt == "":
+                pass
+            else:
+                split = self.split_expression(txt)
+                ic(split)
+                if split[0] is None:
+                    pass
+                else:
+                    if split[2] is None:
+                        if "." in txt[-1]:
+                            txt = txt[:-1]
+                        self.display.config(text=txt+btn)  
+                    else:
+                        if split[1] is None:
+                            pass
+                        else:
+                            try:
+                                txt = str(split[0],split[1],split[2])
+                            except:
+                                txt = self.M_ERROR
         
+        if btn =="-":
+            if txt == "":
+                txt = txt + btn
+                self.display.config(text = txt)
+            else:
+                split = self.split_expression(txt)
+                ic(split)
+                if split[0] is None:
+                    pass
+                else:
+                    txt = txt + btn
+                    self.display.config(text=txt)
+        
+        '''
         if btn in ["+","-","*","/"]:
             if txt != "" and "." in txt[-1]:
                 txt = txt[:-1]
@@ -159,6 +193,6 @@ class Calculator_gui(Calculator):
                 pass
             else:
                 self.display.config(text=txt+btn)
-    
+        '''
 
 c = Calculator_gui()
