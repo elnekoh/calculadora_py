@@ -168,7 +168,16 @@ class Calculator_gui(Calculator):
                 if split[0] is None:
                     pass
                 else:
-                    txt = txt + btn
-                    self.display.config(text=txt)
+                    if split[2] is None:
+                        txt = txt + btn
+                        self.display.config(text=txt)
+                    else:
+                        txt_split2 = txt.replace(str(split[0])+str(split[2]), "", 1)
+                        ic(txt_split2, txt)
+                        if txt_split2 == "":
+                            txt = txt + btn
+                            self.display.config(text=txt)
+                        else:
+                            pass
 
 c = Calculator_gui()

@@ -89,7 +89,12 @@ class Calculator:
                     if str[position] == "-":
                         split = self.split_expression(str[position+1:])
                         try:
-                            return [float(split[0])*-1, split[1], split[2]]
+                            num1 = float(split[0])
+                            
+                            if self.has_no_decimal(num1):
+                                num1 = int(num1)
+                            
+                            return [num1*-1, split[1], split[2]]
                         except:
                             print("Fallo el casteo a float de split[0] en split_expression()")
                             print("return [float("-"+split[0]), split[1], split[2]]")
