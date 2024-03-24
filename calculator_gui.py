@@ -112,29 +112,30 @@ class Calculator_gui(Calculator):
         self.display_text = self.display_text[:-1]
 
     def click(self, pressed_button):
-        #se obtiene siempre el texto del display
-        txt = self.display.cget("text")
-        #si el texto es un error, al tocar un boton se borra
-        if self.display_text == self.M_ERROR:
+        txt = self.display_text
+
+        if self.display_text == self.MESSAGE_ERROR:
             self._delete_all()
 
+        splitted_expression = self.split_expression(self.display_text)
+        number1 = splitted_expression[0]
+        number2 = splitted_expression[1]
+        operator = splitted_expression[2]
+
         if pressed_button == "=":
-            #esto deberia ser otro metodo!!!
-            split = self.split_expression(txt)
-            if split[1] is None or split[2] is None:
+            if  number1 is None or operator is None:
                 pass
             else:
-                txt = str(self.solve(split[0],split[1],split[2]))
-                self.display.config(text=txt)
+                self.display_text = str(self.solve(number1,number2,operator))
 
         if pressed_button in ["1","2","3","4","5","6","7","8","9","0"]:
             self.display_text = self.display_text + pressed_button
 
         if pressed_button == "DEL":
-            self.display_text = self.display_text[:-1]
+            self._delete_last_char()
 
         if pressed_button == "AC":
-            self.display.config(text="")
+            self._delete_all()
 
         if pressed_button == "." and txt != "":
             #solo puede escribirse un punto si el ultimo char es un numero

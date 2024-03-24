@@ -1,6 +1,6 @@
 from icecream import *
 class Calculator:
-    M_ERROR = "Error"
+    MESSAGE_ERROR = "Error"
     OPERATIONS = ["+","-","*","/"]
 
     def __init__(self):
