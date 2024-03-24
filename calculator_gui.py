@@ -93,8 +93,9 @@ class Calculator_gui(Calculator):
         return self._display
     
     def btn_click(self, btn):
+        #se obtiene siempre el texto del display
         txt = self.display.cget("text")
-        ic(txt)
+        #si el texto es un error, al tocar un boton se borra
         if txt == self.M_ERROR:
             txt = ""
 
@@ -117,67 +118,60 @@ class Calculator_gui(Calculator):
         if btn == "AC":
             self.display.config(text="")
 
-        if btn == ".":
-            if txt != "" and txt[0] != "-":
-                split = self.split_expression(txt)
-                if split[1] is None:
-                    #SI
-                    if "." in txt:
-                        pass
-                    else:
-                        self.display.config(text=txt+btn)
-                else:
-                    #NO
-                    first_number = txt.replace(str(split[0]), "", 1)
-                    if "." in first_number:
-                        pass
-                    else:
-                        self.display.config(text=txt+btn)
-
-
-
-        if btn in ["+","*","/"]:
-            if txt == "":
-                pass
-            else:
-                split = self.split_expression(txt)
-                ic(split)
-                if split[0] is None:
+        if btn == "." and txt != "":
+            #solo puede escribirse un punto si el ultimo char es un numero
+            #tambien se controla que no haya otro punto en el numero que se esta escribiendo
+            split = self.split_expression(txt)
+            if split[1] is None:
+                #no hay num2
+                if "." in txt or txt == "-":
                     pass
                 else:
-                    if split[2] is None:
-                        if "." in txt[-1]:
-                            txt = txt[:-1]
-                        self.display.config(text=txt+btn)  
-                    else:
-                        if split[1] is None:
-                            pass
-                        else:
-                            try:
-                                txt = str(split[0],split[1],split[2])
-                            except:
-                                txt = self.M_ERROR
+                    self.display.config(text=txt+btn)
+            else:
+                #hay num2
+                second_number = txt.replace(str(split[0]), "", 1)
+                if "." in second_number or txt == "-":
+                    pass
+                else:
+                    self.display.config(text=txt+btn)
+
+
+
+        if btn in ["+","*","/"] and txt != "":
+            if "." in txt[-1]: # si el ultimo char es un punto, se borra
+                txt = txt[:-1]
+            split = self.split_expression(txt)
+            #En ambos if, se evalua si split[0] es None, si lo es, entonces no llego una expression
+            if split[0] is not None and split[2] is None:
+                #si split[2] es None, entonces solo esta el numero 1 en la expresion
+                txt = txt + btn 
+            elif split[0] is not None and split[1] is not None:
+                #hay numero 2 y operador, tratamos de resolver la expresion, y txt se convierte en el resultado + el operador
+                try:
+                    txt = str(self.solve(split[0],split[1],split[2]))+btn             
+                except:
+                    txt = self.M_ERROR
+            else:
+                txt = self.M_ERROR #ante cualquier situacion no esperada, se muestra un error
+            self.display.config(text=txt) 
         
         if btn =="-":
-            if txt == "":
-                txt = txt + btn
-                self.display.config(text = txt)
+            if txt == "": 
+                txt = "-"
             else:
+                #si el texto no esta vacio, se controla si el ultimo char es un operador
                 split = self.split_expression(txt)
-                ic(split)
-                if split[0] is None:
-                    pass
+                if split[0] is not None and split[2] is None: #si exite numero 1, y el operador no, a txt se me agrega btn
+                    txt = txt + btn
                 else:
-                    if split[2] is None:
+                    #pero si el operador si existe, entonces controlamos si el numero 2 esta vacio
+                    #si esta vacio, entonces se agrega el simbolo negativo
+                    txt_split2 = txt.replace(str(split[0])+str(split[2]), "", 1)
+                    if txt_split2 == "":
                         txt = txt + btn
-                        self.display.config(text=txt)
-                    else:
-                        txt_split2 = txt.replace(str(split[0])+str(split[2]), "", 1)
-                        ic(txt_split2, txt)
-                        if txt_split2 == "":
-                            txt = txt + btn
-                            self.display.config(text=txt)
-                        else:
-                            pass
+                            
+            self.display.config(text = txt)
+
 
 c = Calculator_gui()

@@ -111,7 +111,7 @@ class Calculator:
                             return [num1*-1, split[1], split[2]]
                         except:
                             print("Fallo el casteo a float de split[0] en split_expression()")
-                            print("return [float("-"+split[0]), split[1], split[2]]")
+                            print("return [float('-'+split[0]), split[1], split[2]]")
                             return [None, None, None] 
                     else:
                         print("Llego un operador como primer char de txt a split_expression()")
