@@ -21,6 +21,7 @@ class Calculator_gui(Calculator):
 
     def __init__(self):
         Calculator.__init__(self)
+        self._display_text = ""
         self._window = Tk()
         self._window.title("Calculator")
 
@@ -92,17 +93,34 @@ class Calculator_gui(Calculator):
     def display(self):
         return self._display
     
+    @property
+    def display_text(self):
+        return self._display_text
+    
+    @display_text.setter
+    def display_text(self, new_text):
+        self._display_text = new_text
+        self.refresh_display()
+    
+    def refresh_display(self):
+        self.display.config(text = self.display_text)
+    
+    def _delete_all(self):
+        self.display_text = ""
+    
+    def _delete_last_char(self):
+        self.display_text = self.display_text[:-1]
+
     def click(self, pressed_button):
         #se obtiene siempre el texto del display
         txt = self.display.cget("text")
         #si el texto es un error, al tocar un boton se borra
-        if txt == self.M_ERROR:
-            txt = ""
+        if self.display_text == self.M_ERROR:
+            self._delete_all()
 
         if pressed_button == "=":
             #esto deberia ser otro metodo!!!
             split = self.split_expression(txt)
-            ic(split)
             if split[1] is None or split[2] is None:
                 pass
             else:
@@ -110,10 +128,10 @@ class Calculator_gui(Calculator):
                 self.display.config(text=txt)
 
         if pressed_button in ["1","2","3","4","5","6","7","8","9","0"]:
-            self.display.config(text=txt+pressed_button)
+            self.display_text = self.display_text + pressed_button
 
         if pressed_button == "DEL":
-            self.display.config(text=txt[:-1])
+            self.display_text = self.display_text[:-1]
 
         if pressed_button == "AC":
             self.display.config(text="")
