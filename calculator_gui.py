@@ -28,25 +28,25 @@ class Calculator_gui(Calculator):
         self._display = Label(self.window, font=(self.DISPLAY_FONT), text="", anchor="e", justify="right", width=self.DISPLAY_WIDTH)
 
         #buttons
-        self._btn1 = Button(self._window, text= "1", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("1"))
-        self._btn2 = Button(self._window, text= "2", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("2"))
-        self._btn3 = Button(self._window, text= "3", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("3"))
-        self._btn4 = Button(self._window, text= "4", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("4"))
-        self._btn5 = Button(self._window, text= "5", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("5"))
-        self._btn6 = Button(self._window, text= "6", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("6"))
-        self._btn7 = Button(self._window, text= "7", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("7"))
-        self._btn8 = Button(self._window, text= "8", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("8"))
-        self._btn9 = Button(self._window, text= "9", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("9"))
-        self._btn0 = Button(self._window, text= "0", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("0"))
+        self._btn1 = Button(self._window, text= "1", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.click("1"))
+        self._btn2 = Button(self._window, text= "2", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.click("2"))
+        self._btn3 = Button(self._window, text= "3", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.click("3"))
+        self._btn4 = Button(self._window, text= "4", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.click("4"))
+        self._btn5 = Button(self._window, text= "5", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.click("5"))
+        self._btn6 = Button(self._window, text= "6", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.click("6"))
+        self._btn7 = Button(self._window, text= "7", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.click("7"))
+        self._btn8 = Button(self._window, text= "8", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.click("8"))
+        self._btn9 = Button(self._window, text= "9", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.click("9"))
+        self._btn0 = Button(self._window, text= "0", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.click("0"))
 
-        self._btn_del = Button(self._window, text= "DEL", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("DEL"))
-        self._btn_delAll = Button(self._window, text= "AC", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("AC"))
-        self._btn_dot = Button(self._window, text= ".", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("."))
-        self._btn_equal = Button(self._window, text= "=", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("="))
-        self._btn_sum = Button(self._window, text= "+", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("+"))
-        self._btn_sub = Button(self._window, text= "-", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("-"))
-        self._btn_div = Button(self._window, text= "/", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("/"))
-        self._btn_mult = Button(self._window, text= "*", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.btn_click("*"))
+        self._btn_del = Button(self._window, text= "DEL", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.click("DEL"))
+        self._btn_delAll = Button(self._window, text= "AC", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.click("AC"))
+        self._btn_dot = Button(self._window, text= ".", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.click("."))
+        self._btn_equal = Button(self._window, text= "=", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.click("="))
+        self._btn_sum = Button(self._window, text= "+", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.click("+"))
+        self._btn_sub = Button(self._window, text= "-", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.click("-"))
+        self._btn_div = Button(self._window, text= "/", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.click("/"))
+        self._btn_mult = Button(self._window, text= "*", width = self.BTN_WIDTH, height = self.BTN_HEIGHT, borderwidth = self.BTN_BORDERWIDTH, relief = self.BTN_RELIEF, command = lambda: self.click("*"))
 
         self.btns_grid()
         self.display_grid()
@@ -92,14 +92,14 @@ class Calculator_gui(Calculator):
     def display(self):
         return self._display
     
-    def btn_click(self, btn):
+    def click(self, pressed_button):
         #se obtiene siempre el texto del display
         txt = self.display.cget("text")
         #si el texto es un error, al tocar un boton se borra
         if txt == self.M_ERROR:
             txt = ""
 
-        if btn == "=":
+        if pressed_button == "=":
             #esto deberia ser otro metodo!!!
             split = self.split_expression(txt)
             ic(split)
@@ -109,16 +109,16 @@ class Calculator_gui(Calculator):
                 txt = str(self.solve(split[0],split[1],split[2]))
                 self.display.config(text=txt)
 
-        if btn in ["1","2","3","4","5","6","7","8","9","0"]:
-            self.display.config(text=txt+btn)
+        if pressed_button in ["1","2","3","4","5","6","7","8","9","0"]:
+            self.display.config(text=txt+pressed_button)
 
-        if btn == "DEL":
+        if pressed_button == "DEL":
             self.display.config(text=txt[:-1])
 
-        if btn == "AC":
+        if pressed_button == "AC":
             self.display.config(text="")
 
-        if btn == "." and txt != "":
+        if pressed_button == "." and txt != "":
             #solo puede escribirse un punto si el ultimo char es un numero
             #tambien se controla que no haya otro punto en el numero que se esta escribiendo
             split = self.split_expression(txt)
@@ -127,49 +127,58 @@ class Calculator_gui(Calculator):
                 if "." in txt or txt == "-":
                     pass
                 else:
-                    self.display.config(text=txt+btn)
+                    self.display.config(text=txt+pressed_button)
             else:
                 #hay num2
                 second_number = txt.replace(str(split[0]), "", 1)
                 if "." in second_number or txt == "-":
                     pass
                 else:
-                    self.display.config(text=txt+btn)
+                    self.display.config(text=txt+pressed_button)
 
 
 
-        if btn in ["+","*","/"] and txt != "":
+        if pressed_button in ["+","*","/"] and txt != "":
             if "." in txt[-1]: # si el ultimo char es un punto, se borra
                 txt = txt[:-1]
             split = self.split_expression(txt)
             #En ambos if, se evalua si split[0] es None, si lo es, entonces no llego una expression
             if split[0] is not None and split[2] is None:
                 #si split[2] es None, entonces solo esta el numero 1 en la expresion
-                txt = txt + btn 
+                txt = txt + pressed_button 
             elif split[0] is not None and split[1] is not None:
                 #hay numero 2 y operador, tratamos de resolver la expresion, y txt se convierte en el resultado + el operador
                 try:
-                    txt = str(self.solve(split[0],split[1],split[2]))+btn             
+                    txt = str(self.solve(split[0],split[1],split[2]))+pressed_button             
                 except:
                     txt = self.M_ERROR
+            elif split[0] is not None and split[1] is None and split[2] is not None:
+                pass
             else:
                 txt = self.M_ERROR #ante cualquier situacion no esperada, se muestra un error
             self.display.config(text=txt) 
         
-        if btn =="-":
+        if pressed_button =="-":
             if txt == "": 
                 txt = "-"
             else:
                 #si el texto no esta vacio, se controla si el ultimo char es un operador
                 split = self.split_expression(txt)
                 if split[0] is not None and split[2] is None: #si exite numero 1, y el operador no, a txt se me agrega btn
-                    txt = txt + btn
-                else:
+                    txt = txt + pressed_button
+                elif split[0] is not None and split[2] is not None:
                     #pero si el operador si existe, entonces controlamos si el numero 2 esta vacio
                     #si esta vacio, entonces se agrega el simbolo negativo
                     txt_split2 = txt.replace(str(split[0])+str(split[2]), "", 1)
                     if txt_split2 == "":
-                        txt = txt + btn
+                        txt = txt + pressed_button
+                elif split[0] is not None and split[1] is not None and split[2] is not None:
+                    try:
+                        txt = str(self.solve(split[0],split[1],split[2]))+pressed_button             
+                    except:
+                        txt = self.M_ERROR
+                else:
+                    txt = self.M_ERROR
                             
             self.display.config(text = txt)
 
