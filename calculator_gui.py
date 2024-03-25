@@ -161,7 +161,7 @@ class Calculator_gui(Calculator):
         if pressed_button in ["+","*","/"] and self.display_text != "":
             if "." in self.display_text[-1]: # si el ultimo char es un punto, se borra
                 self._delete_last_char()
-            #En ambos if, se evalúa si split[0] es None, si lo es, entonces no llego una expression
+            #En ambos if, se evalúa si number1 es None, si lo es, entonces no llego una expression
             if number1 is not None and operator is None:
                 self.add_to_display_text(pressed_button) 
             elif number1 is not None and number2 is not None:
@@ -176,28 +176,22 @@ class Calculator_gui(Calculator):
                 self.display_text = self.M_ERROR
         
         if pressed_button =="-":
-            if txt == "": 
-                txt = "-"
+            if self.display_text == "": 
+                self.add_to_display_text(pressed_button)
             else:
-                #si el texto no esta vacio, se controla si el ultimo char es un operador
-                split = self.split_expression(txt)
-                if split[0] is not None and split[2] is None: #si exite numero 1, y el operador no, a txt se me agrega btn
-                    txt = txt + pressed_button
-                elif split[0] is not None and split[2] is not None:
-                    #pero si el operador si existe, entonces controlamos si el numero 2 esta vacio
-                    #si esta vacio, entonces se agrega el simbolo negativo
-                    txt_split2 = txt.replace(str(split[0])+str(split[2]), "", 1)
-                    if txt_split2 == "":
-                        txt = txt + pressed_button
-                elif split[0] is not None and split[1] is not None and split[2] is not None:
+                if number1 is not None and operator is None: 
+                    self.add_to_display_text(pressed_button)
+                elif number1 is not None and operator is not None:
+                    number2_in_display_text = self.display_text.replace(str(number1)+str(operator), "", 1)
+                    if number2_in_display_text == "":
+                        self.add_to_display_text(pressed_button)
+                elif number1 is not None and number2 is not None and operator is not None:
                     try:
-                        txt = str(self.solve(split[0],split[1],split[2]))+pressed_button             
+                        self.display_text = str(self.solve(number1,number2,operator)) + pressed_button             
                     except:
-                        txt = self.M_ERROR
+                        self.display_text = self.M_ERROR
                 else:
-                    txt = self.M_ERROR
-                            
-            self.display.config(text = txt)
+                    self.display_text = self.M_ERROR
 
 
 c = Calculator_gui()
