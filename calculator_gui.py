@@ -141,8 +141,6 @@ class Calculator_gui(Calculator):
             self._delete_all()
 
         if pressed_button == "." and txt != "":
-            #solo puede escribirse un punto si el ultimo char es un numero
-            #también se controla que no haya otro punto en el numero que se esta escribiendo
             if number2 is None:
                 if "." in self.display_text or self.display_text == "-":
                     pass
@@ -159,7 +157,7 @@ class Calculator_gui(Calculator):
 
 
         if pressed_button in ["+","*","/"] and self.display_text != "":
-            if "." in self.display_text[-1]: # si el ultimo char es un punto, se borra
+            if "." in self.display_text[-1]:
                 self._delete_last_char()
             #En ambos if, se evalúa si number1 es None, si lo es, entonces no llego una expression
             if number1 is not None and operator is None:
