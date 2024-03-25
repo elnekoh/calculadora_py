@@ -1,7 +1,7 @@
 from icecream import *
 class Calculator:
-    MESSAGE_ERROR = "Error"
-    OPERATIONS = ["+","-","*","/"]
+    MESSAGE_ERROR: str = "Error"
+    OPERATIONS: list = ["+","-","*","/"]
 
     def __init__(self):
         self._ans = None
@@ -30,7 +30,7 @@ class Calculator:
         operator: string --> posible valores "+", "-", "*", "/"
         """
         if number1 is None or number2 is None or operator is None:
-            return self.M_ERROR
+            return self.MESSAGE_ERROR
         
         result = 0
         if operator == "+":
@@ -42,9 +42,9 @@ class Calculator:
         elif operator == "/":
             result = self._divide(number1, number2)
             if result is None:
-                return self.M_ERROR
+                return self.MESSAGE_ERROR
         else:
-            return self.M_ERROR
+            return self.MESSAGE_ERROR
         
         if isinstance(result, float) and self.has_no_decimal(result):
             return int(result)
@@ -76,43 +76,44 @@ class Calculator:
                 position = text.find(operators[i])
                 i+=1
 
-        #encontro coincidencia?
+        #encontró coincidencia?
         if position != -1:
             text_before_match = text[:position]
             text_after_match = text[position+1:]
             operator = text[position]
-            #aca el metodo controla si el primer valor es "-"
+
+            #aca el método controla si el primer valor es "-"
             if text_before_match == "":
+                #antes del operador no hay nada
                 if text_after_match == "":
                     print("Llego solo un operador a split_expression()")
                     return [None, None, None]
+                elif text[position] == "-": #confirmamos si lo que esta en str[position] es "-"
+                    #Si llega hasta aca, entonces la primer coincidencia era el símbolo negativo del primer numero
+                    #entonces, se vuelve a splittear la expresión pero esta vez quitando el símbolo negativo.
+                    splitted_text = self.split_expression(text_after_match)
+                    try:
+                        number1 = float(splitted_text[0])
+                        #checkeamos si en realidad este numero no tiene decimales
+                        if self.has_no_decimal(number1):
+                            number1 = int(number1)
+                        
+                        #pasamos num1 a negativo, ya que previamente le quitamos el símbolo negativo.
+                        return [number1*-1, splitted_text[1], splitted_text[2]]
+                    except:
+                        print("Fallo el casteo a float de split[0] en split_expression()")
+                        print("return [number1*-1, splitted_text[1], splitted_text[2]]")
+                        return [None, None, None] 
                 else:
-                    if text[position] == "-": #confirmamos si lo que esta en str[position] es "-"
-                        #Si llega hasta aca, entonces la primer coincidencia era el simbolo negativo del primer numero
-                        #entonces, se vuelve a splitear la expresion pero esta vez quitando el simbolo negativo.
-                        splitted_text = self.split_expression(text_after_match)
-                        try:
-                            number1 = float(splitted_text[0])
-                            #checkeamos si en realidad este numero no tiene decimales
-                            if self.has_no_decimal(number1):
-                                number1 = int(number1)
-                            
-                            #pasamos num1 a negativo, ya que previamente le quitamos el simbolo negativo.
-                            return [number1*-1, splitted_text[1], splitted_text[2]]
-                        except:
-                            print("Fallo el casteo a float de split[0] en split_expression()")
-                            print("return [float('-'+split[0]), split[1], split[2]]")
-                            return [None, None, None] 
-                    else:
-                        print("Llego un operador como primer char de txt a split_expression()")
-                        return [None, None, None]
-            else:   #Si no esta vacio lo encontrado antes de la coincidencia: 
+                    print("Llego un operador como primer char de txt a split_expression()")
+                    return [None, None, None]
+            else:
+                #antes del operador hay algo
                 try:
                     number1 = float(text_before_match)
                 except:
-                    #si no podemos pasarlo a float, devolvemos none en todo, siempre que hay error se devuelve none en todo
-                    print("Error al intentar castear lo que se encontro antes de op a float en 'split_expression()'.")
-                    print("( num1 = float(str[:position]) )")
+                    print("Error al intentar castear lo que se encontró antes de operator a float en 'split_expression()'.")
+                    print("( number1 = float(text_before_match) )")
                     return [None, None, None]
                 
                 try:
@@ -121,29 +122,27 @@ class Calculator:
                         number1 = int(number1)
                     number2 = float(text_after_match)
                 except:
-                    #si no se puede pasar a float lo que hay despues de la coincidencia, se devuelve solo el num1 y el operador
-                    print("Error al intentar castear lo que se encontro despues de op a float en 'split_expression()'.")
-                    print("( num2 = float(str[position+1:]) )")
+                    #si no se puede pasar a float lo que hay después de la coincidencia, se devuelve solo el num1 y el operador
+                    print("Error al intentar castear lo que se encontró después de operator a float en 'split_expression()'.")
+                    print("( number2 = float(text_after_match) )")
                     return [number1, None, operator]
                 
                 if self.has_no_decimal(number2):
                         number2 = int(number2)
 
                 return [number1,number2,operator]
+        #a este punto, no se encontró ninguna coincidencia
+        elif text == "": 
+            return [None, None, None]
         else:
-            #no encontro coincidencia:
-            #esta vacio el stream?. si da true, entonces llego vacio, si da false, entonces solo llego un numero
-            if text == "":
+            try:
+                #si se puede pasar a float, lo pasamos a int si no tiene decimales
+                text = float(text)
+                if self.has_no_decimal(text):
+                    text = int(text)
+                return [text, None, None]
+            except:
+                print("Error al intentar castear text como un float (return [text, None, None] )")
+                print("text = ")
+                print(text)
                 return [None, None, None]
-            else:
-                try:
-                    #si se puede pasar a float, lo pasamos a int si no tiene decimales
-                    text = float(text)
-                    if self.has_no_decimal(text):
-                        text = int(text)
-                    return [text, None, None]
-                except:
-                    print("Error al intentar castear str como un float (return [float(str), None, None] )")
-                    print("str = ")
-                    print(text)
-                    return [None, None, None]
