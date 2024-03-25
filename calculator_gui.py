@@ -104,6 +104,9 @@ class Calculator_gui(Calculator):
     
     def refresh_display(self):
         self.display.config(text = self.display_text)
+
+    def add_to_display_text(self, text):
+        self.display_text = self.display_text + text
     
     def _delete_all(self):
         self.display_text = ""
@@ -129,7 +132,7 @@ class Calculator_gui(Calculator):
                 self.display_text = str(self.solve(number1,number2,operator))
 
         if pressed_button in ["1","2","3","4","5","6","7","8","9","0"]:
-            self.display_text = self.display_text + pressed_button
+            self.add_to_display_text(pressed_button)
 
         if pressed_button == "DEL":
             self._delete_last_char()
@@ -139,43 +142,38 @@ class Calculator_gui(Calculator):
 
         if pressed_button == "." and txt != "":
             #solo puede escribirse un punto si el ultimo char es un numero
-            #tambien se controla que no haya otro punto en el numero que se esta escribiendo
-            split = self.split_expression(txt)
-            if split[1] is None:
-                #no hay num2
-                if "." in txt or txt == "-":
+            #también se controla que no haya otro punto en el numero que se esta escribiendo
+            if number2 is None:
+                if "." in self.display_text or self.display_text == "-":
                     pass
                 else:
-                    self.display.config(text=txt+pressed_button)
+                    self.add_to_display_text(pressed_button)
             else:
                 #hay num2
-                second_number = txt.replace(str(split[0]), "", 1)
-                if "." in second_number or txt == "-":
+                number2_in_display_text = self.display_text.replace(str(number1)+operator, "", 1)
+                if "." in number2_in_display_text or number2_in_display_text == "" or self.display_text == "-":
                     pass
                 else:
-                    self.display.config(text=txt+pressed_button)
+                    self.add_to_display_text(pressed_button)
 
 
 
-        if pressed_button in ["+","*","/"] and txt != "":
-            if "." in txt[-1]: # si el ultimo char es un punto, se borra
-                txt = txt[:-1]
-            split = self.split_expression(txt)
-            #En ambos if, se evalua si split[0] es None, si lo es, entonces no llego una expression
-            if split[0] is not None and split[2] is None:
-                #si split[2] es None, entonces solo esta el numero 1 en la expresion
-                txt = txt + pressed_button 
-            elif split[0] is not None and split[1] is not None:
-                #hay numero 2 y operador, tratamos de resolver la expresion, y txt se convierte en el resultado + el operador
+        if pressed_button in ["+","*","/"] and self.display_text != "":
+            if "." in self.display_text[-1]: # si el ultimo char es un punto, se borra
+                self._delete_last_char()
+            #En ambos if, se evalúa si split[0] es None, si lo es, entonces no llego una expression
+            if number1 is not None and operator is None:
+                self.add_to_display_text(pressed_button) 
+            elif number1 is not None and number2 is not None:
+                #hay numero 2 y operador, tratamos de resolver la expresión, y txt se convierte en el resultado + el operador
                 try:
-                    txt = str(self.solve(split[0],split[1],split[2]))+pressed_button             
+                    self.display_text = str(self.solve(number1, number2, operator)) + pressed_button             
                 except:
-                    txt = self.M_ERROR
-            elif split[0] is not None and split[1] is None and split[2] is not None:
+                    self.display_text = self.M_ERROR
+            elif number1 is not None and number2 is None and operator is not None:
                 pass
             else:
-                txt = self.M_ERROR #ante cualquier situacion no esperada, se muestra un error
-            self.display.config(text=txt) 
+                self.display_text = self.M_ERROR
         
         if pressed_button =="-":
             if txt == "": 
